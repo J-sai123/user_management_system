@@ -1,0 +1,644 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:"Inter","Segoe UI",system-ui,sans-serif;
+  background:#f5f6fa;
+  min-height:100vh;
+  color:#1a1d23;
+  -webkit-font-smoothing:antialiased;
+}
+
+button,input,select{font-family:inherit}
+button{cursor:pointer;transition:background .18s,border-color .18s,color .18s}
+input,select{transition:border-color .18s,box-shadow .18s;cursor:text}
+select{cursor:pointer}
+input::placeholder{color:#b0b7c3}
+a{text-decoration:none;color:inherit}
+
+/* ── Layout ─────────────────────────── */
+
+.app{
+  width:95%;
+  max-width:1400px;
+  margin:32px auto;
+}
+
+/* ── Header ─────────────────────────── */
+
+.header{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:22px 32px;
+    border-radius:12px;
+    background:#fff;
+    border:1px solid #e8eaf0;
+    margin-bottom:20px;
+    /* margin-left:25%;
+    width:50%; */
+    box-shadow:0 8px 24px rgba(15,23,42,.08);
+}   
+
+.header-left h1{
+  font-size:22px;
+  font-weight:700;
+  color:#1a1d23;
+  margin-bottom:3px;
+  letter-spacing:-0.2px;
+}
+
+.header-left p{
+  font-size:13px;
+  color:#8a92a6;
+}
+
+.add-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    background:#3b5bdb;
+    color:#fff;
+    font-weight:600;
+    font-size:13px;
+    white-space:nowrap;
+    flex-shrink:0;
+}
+
+.add-btn:hover{background:#2f4ac2}
+.add-btn:active{transform:scale(.97)}
+.action-bar{
+  margin-bottom:16px;
+}
+
+.action-bar .add-btn{
+  display:inline-flex;
+}
+/* ── Top Section ─────────────────────── */
+
+.top-section{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+    justify-content:center;
+}
+
+.search-box{
+ /* flex:1; */
+ width: 30%;
+}
+
+.search-box input{
+    width:100%;
+    padding:10px 16px;
+    border:1px solid #e8eaf0;
+    border-radius:8px;
+    background:#fff;
+    font-size:13px;
+}
+
+.search-box input:focus{
+  outline:none;
+  border-color:#3b5bdb;
+  box-shadow:0 0 0 3px rgba(59,91,219,.1);
+}
+
+/* ── Filter ──────────────────────────── */
+
+.filter-wrapper{position:relative}
+
+.filter-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:10px 18px;
+    border:1px solid #e8eaf0;
+    border-radius:8px;
+    background:#fff;
+    color:#3b5bdb;
+    font-weight:600;
+    font-size:13px;
+    flex-shrink:0;
+}
+
+.filter-btn:hover{border-color:#3b5bdb;background:#f0f3ff}
+.filter-btn:active{transform:scale(.97)}
+
+.filter-popup{
+  position:absolute;
+  top:calc(100% + 8px);
+  right:0;
+  width:520px;
+  background:#fff;
+  padding:22px;
+  border-radius:12px;
+  border:1px solid #e8eaf0;
+  box-shadow:0 8px 24px rgba(0,0,0,.09);
+  z-index:200;
+  animation:popup .18s ease;
+}
+
+.filter-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:14px;
+}
+
+.filter-group{display:flex;flex-direction:column}
+
+.filter-group label{
+  margin-bottom:5px;
+  font-weight:600;
+  font-size:12px;
+  color:#5c6370;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+}
+
+.filter-group input,
+.filter-group select{
+  padding:9px 12px;
+  border-radius:7px;
+  border:1px solid #e8eaf0;
+  font-size:13px;
+  background:#fff;
+  color:#1a1d23;
+}
+
+.filter-group input:focus,
+.filter-group select:focus{
+  outline:none;
+  border-color:#3b5bdb;
+  box-shadow:0 0 0 3px rgba(59,91,219,.1);
+}
+
+.filter-actions{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:16px;
+}
+
+.clear-btn{
+  padding:9px 20px;
+  border:1px solid #e8eaf0;
+  border-radius:7px;
+  background:#fff;
+  color:#e03131;
+  font-weight:600;
+  font-size:13px;
+}
+
+.clear-btn:hover{background:#fff5f5;border-color:#ffc9c9}
+
+/* ── Loading / Error ─────────────────── */
+
+.loading,
+.error-box{
+  background:#fff;
+  padding:48px;
+  border-radius:12px;
+  text-align:center;
+  border:1px solid #e8eaf0;
+  margin-top:16px;
+}
+
+.error-box{
+  color:#e03131;
+  border-color:#ffc9c9;
+  background:#fff5f5;
+}
+
+/* ── Table ───────────────────────────── */
+
+.table-container{
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #e8eaf0;
+  margin-top:16px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:900px;
+}
+
+thead{background:#f8f9fc}
+
+th{
+  padding:13px 18px;
+  font-size:12px;
+  font-weight:700;
+  text-align:left;
+  color:#8a92a6;
+  cursor:pointer;
+  user-select:none;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  border-bottom:1px solid #e8eaf0;
+}
+
+th:first-child{text-align:center}
+th:last-child{text-align:center}
+
+th:hover{color:#3b5bdb}
+
+td{
+  padding:14px 18px;
+  text-align:left;
+  border-bottom:1px solid #f1f3f8;
+  font-size:13.5px;
+  color:#2d3142;
+}
+
+td:first-child{
+  text-align:center;
+  color:#8a92a6;
+  font-size:13px;
+  font-weight:500;
+}
+
+td:last-child{text-align:center}
+
+tbody tr:last-child td{border-bottom:none}
+
+tbody tr:hover td{background:#f8f9fc}
+
+.empty-row td{
+  padding:52px;
+  font-size:14px;
+  font-weight:500;
+  color:#b0b7c3;
+  text-align:center;
+}
+
+/* ── Department Badges ───────────────── */
+
+.department{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:4px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+  min-width:80px;
+  letter-spacing:.2px;
+}
+
+.department.it{background:#dbe4ff;color:#2f4ac2}
+.department.hr{background:#fce7f3;color:#a61e4d}
+.department.finance{background:#fff3bf;color:#855d0a}
+.department.sales{background:#d3f9d8;color:#166534}
+.department.marketing{background:#ede9fe;color:#5b21b6}
+
+/* ── Action Buttons ──────────────────── */
+
+.action-buttons{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+}
+
+.edit-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:7px 14px;
+  border:1px solid #d3f9d8;
+  border-radius:7px;
+  background:#f0fdf4;
+  color:#166534;
+  font-weight:600;
+  font-size:12px;
+}
+
+.edit-btn:hover{background:#d3f9d8;border-color:#a7f3d0}
+
+.delete-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:7px 14px;
+  border:1px solid #ffc9c9;
+  border-radius:7px;
+  background:#fff5f5;
+  color:#e03131;
+  font-weight:600;
+  font-size:12px;
+}
+
+.delete-btn:hover{background:#ffc9c9;border-color:#ffa8a8}
+
+/* ── Pagination ──────────────────────── */
+
+.pagination-container{
+  margin-top:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#fff;
+  padding:14px 22px;
+  border-radius:10px;
+  border:1px solid #e8eaf0;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.page-size{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:500;
+  color:#5c6370;
+}
+
+.page-size select{
+  padding:7px 10px;
+  border-radius:7px;
+  border:1px solid #e8eaf0;
+  font-size:13px;
+  background:#fff;
+  color:#1a1d23;
+}
+
+.pagination{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.page-btn{
+  padding:7px 14px;
+  border:1px solid #e8eaf0;
+  border-radius:7px;
+  background:#fff;
+  color:#3b5bdb;
+  font-weight:600;
+  font-size:13px;
+}
+
+.page-btn:hover:not(:disabled){background:#f0f3ff;border-color:#3b5bdb}
+.page-btn:disabled{opacity:.4;cursor:not-allowed}
+
+.page-number{
+  width:34px;
+  height:34px;
+  border:1px solid #e8eaf0;
+  border-radius:7px;
+  background:#fff;
+  color:#2d3142;
+  font-weight:600;
+  font-size:13px;
+}
+
+.page-number:hover{background:#f0f3ff;border-color:#3b5bdb;color:#3b5bdb}
+
+.page-number.active{
+  background:#3b5bdb;
+  border-color:#3b5bdb;
+  color:#fff;
+}
+
+/* ── Modals ──────────────────────────── */
+
+.modal-overlay,
+.delete-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.45);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  z-index:9999;
+  animation:fadeIn .18s ease;
+}
+
+.user-form-card,
+.delete-modal{
+  width:100%;
+  max-width:480px;
+  background:#fff;
+  border-radius:14px;
+  padding:28px;
+  border:1px solid #e8eaf0;
+  box-shadow:0 16px 48px rgba(15,23,42,.16);
+  animation:popup .2s ease;
+}
+
+.form-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px;
+  padding-bottom:16px;
+  border-bottom:1px solid #f1f3f8;
+}
+
+.form-header h2{
+  font-size:18px;
+  color:#1a1d23;
+  font-weight:700;
+}
+
+.close-btn{
+  width:34px;
+  height:34px;
+  border:1px solid #e8eaf0;
+  border-radius:7px;
+  background:#fff;
+  font-size:15px;
+  color:#8a92a6;
+}
+
+.close-btn:hover{background:#fff5f5;color:#e03131;border-color:#ffc9c9}
+
+.input-group{
+  display:flex;
+  flex-direction:column;
+  margin-bottom:14px;
+}
+
+.input-group label{
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:5px;
+  color:#5c6370;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+}
+
+.input-group input,
+.input-group select{
+  padding:10px 13px;
+  border:1px solid #e8eaf0;
+  border-radius:7px;
+  font-size:13.5px;
+  background:#fff;
+  color:#1a1d23;
+}
+
+.input-group input:focus,
+.input-group select:focus{
+  outline:none;
+  border-color:#3b5bdb;
+  box-shadow:0 0 0 3px rgba(59,91,219,.1);
+}
+
+.error{
+  margin-top:4px;
+  font-size:12px;
+  color:#e03131;
+  font-weight:500;
+}
+
+.form-buttons{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:22px;
+  padding-top:16px;
+  border-top:1px solid #f1f3f8;
+}
+
+.save-btn{
+  padding:10px 22px;
+  border:none;
+  border-radius:7px;
+  background:#3b5bdb;
+  color:#fff;
+  font-size:13px;
+  font-weight:600;
+}
+
+.save-btn:hover{background:#2f4ac2}
+
+.cancel-btn{
+  padding:10px 22px;
+  border:1px solid #e8eaf0;
+  border-radius:7px;
+  background:#fff;
+  color:#5c6370;
+  font-size:13px;
+  font-weight:600;
+}
+
+.cancel-btn:hover{background:#f8f9fc}
+
+/* ── Delete Modal ────────────────────── */
+
+.delete-modal{text-align:center}
+
+.delete-icon{
+  font-size:48px;
+  margin-bottom:12px;
+}
+
+.delete-modal h2{
+  font-size:20px;
+  color:#e03131;
+  margin-bottom:8px;
+}
+
+.delete-modal p{
+  font-size:13.5px;
+  line-height:1.7;
+  color:#8a92a6;
+  margin-bottom:22px;
+}
+
+.delete-actions{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+}
+
+.cancel-delete-btn{
+  padding:10px 22px;
+  border:1px solid #e8eaf0;
+  border-radius:7px;
+  background:#fff;
+  font-weight:600;
+  font-size:13px;
+  color:#5c6370;
+}
+
+.cancel-delete-btn:hover{background:#f8f9fc}
+
+.confirm-delete-btn{
+  padding:10px 22px;
+  border:none;
+  border-radius:7px;
+  background:#e03131;
+  color:#fff;
+  font-weight:600;
+  font-size:13px;
+}
+
+.confirm-delete-btn:hover{background:#c92a2a}
+
+/* ── Scrollbar ───────────────────────── */
+
+::-webkit-scrollbar{height:5px;width:5px}
+::-webkit-scrollbar-track{background:#f5f6fa}
+::-webkit-scrollbar-thumb{background:#d0d5e8;border-radius:20px}
+::-webkit-scrollbar-thumb:hover{background:#8a92a6}
+
+/* ── Animations ──────────────────────── */
+
+@keyframes popup{
+  from{opacity:0;transform:translateY(-8px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* ── Responsive ──────────────────────── */
+
+@media(max-width:992px){
+  .header{flex-direction:column;text-align:center;gap:16px}
+  .top-section{flex-direction:column}
+  .search-box,.filter-wrapper,.filter-btn{width:100%}
+  .filter-popup{width:100%;right:auto;left:0}
+  .pagination-container{flex-direction:column;align-items:flex-start}
+  .pagination{justify-content:center;width:100%}
+}
+
+@media(max-width:768px){
+  .app{width:96%;margin:16px auto}
+  .header{padding:18px 20px}
+  .header-left h1{font-size:18px}
+  .add-btn{width:100%;justify-content:center}
+  .table-container{overflow-x:auto}
+  .action-buttons{flex-direction:column}
+  .edit-btn,.delete-btn{width:100%;justify-content:center}
+  .form-buttons{flex-direction:column}
+  .save-btn,.cancel-btn{width:100%;justify-content:center}
+  .delete-actions{flex-direction:column}
+  .cancel-delete-btn,.confirm-delete-btn{width:100%;justify-content:center}
+}
+
+@media(max-width:576px){
+  .header{padding:16px}
+  .header-left h1{font-size:17px}
+  .filter-popup{padding:16px}
+  .filter-grid{grid-template-columns:1fr}
+  .user-form-card,.delete-modal{padding:20px}
+  .department{min-width:70px;font-size:11px}
+}
+
+button:active{transform:scale(.97)}
